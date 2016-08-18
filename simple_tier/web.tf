@@ -11,7 +11,7 @@ resource "openstack_blockstorage_volume_v2" "web_vol" {
   name = "disk-for-${element(template_file.web_init.*.rendered, count.index)}"
   size = "${var.web_server_params["volume_size"]}"
   volume_type = "${var.web_server_params["volume_type"]}"
-  image_id = "c61cfa0d-3f7b-489f-8e55-4904a0d6e830"
+  image_id = "${var.web_server_params["image_id"]}"
   region = "${var.region}"
 }
 
@@ -20,18 +20,16 @@ resource "openstack_compute_instance_v2" "web_instance" {
   name = "${element(template_file.web_init.*.rendered, count.index)}"
   flavor_id = "${var.web_server_params["flavor"]}"
   region = "${var.region}"
+  key_pair = "shared"
   block_device {
-    #uuid = "${element(${openstack_blockstorage_volume_v2.web_vol.id}, ${var.web_server_params["count"]}.index)}"
     uuid = "${element(openstack_blockstorage_volume_v2.web_vol.*.id, count.index)}"
     source_type = "volume"
     boot_index = 0
     destination_type = "volume"
   }
-
   metadata {
     type = "${var.web_server_params["name"]}"
   }
-
   network {   
     name = "${var.private_lan["name"]}"
   }

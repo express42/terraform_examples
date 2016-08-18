@@ -10,6 +10,14 @@ variable "selectel" {
   }
 }
 
+variable "project_ssh_pubkey" {
+  default = "" # ssh pubkey
+}
+
+variable "project_tld" {
+  default = "example.org"
+}
+
 # cloud environment parameters
 variable "region" {
   default = "ru-1" # ru-1 (SPB) or ru-2 (MSK)
@@ -28,14 +36,11 @@ variable "app_server_params" {
   default = {
     "name" = "app"
     "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f" # Instance specs
+    "image_id" = "c61cfa0d-3f7b-489f-8e55-4904a0d6e830" # Image id
     "volume_type" = "basic.ru-1a" # Can be one of this: "basic.ru-1a", "universal.ru-1a", "fast.ru-1a", "isos"
     "volume_size" = "5" # Our block device size
     "count" = "2" # count of server to provision
   }
-}
-
-variable "project_tld" {
-  default = "example.org"
 }
 
 variable "db_server_params" {
@@ -43,6 +48,7 @@ variable "db_server_params" {
   default = {
     "name" = "db"
     "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f"
+    "image_id" = "c61cfa0d-3f7b-489f-8e55-4904a0d6e830"
     "volume_type" = "basic.ru-1a"
     "volume_size" = "5"
     "count" = "1"
@@ -54,6 +60,7 @@ variable "web_server_params" {
   default = {
     "name" = "web"
     "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f"
+    "image_id" = "c61cfa0d-3f7b-489f-8e55-4904a0d6e830"
     "volume_type" = "basic.ru-1a"
     "volume_size" = "5"
     "count" = "2"
