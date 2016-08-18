@@ -1,0 +1,61 @@
+# provider specific parameters
+variable "selectel" {
+  type = "map"
+  default = {
+    "user_name" = "" # OS_USERNAME
+    "domain_name" = "" # OS_PROJECT_DOMAIN_NAME
+    "tenant_name" = "" # OS_PROJECT_ID
+    "tenant_id" = "" # OS_TENANT_ID
+    "password" = ""
+  }
+}
+
+# cloud environment parameters
+variable "region" {
+  default = "ru-1" # ru-1 (SPB) or ru-2 (MSK)
+}
+
+variable "private_lan" {
+  type = "map"
+  default = {
+    "name" = "private_lan"
+    "cidr" = "10.0.0.0/24" # private net cidr
+  }
+}
+
+variable "app_server_params" {
+  type = "map"
+  default = {
+    "name" = "app"
+    "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f" # Instance specs
+    "volume_type" = "basic.ru-1a" # Can be one of this: "basic.ru-1a", "universal.ru-1a", "fast.ru-1a", "isos"
+    "volume_size" = "5" # Our block device size
+    "count" = "2" # count of server to provision
+  }
+}
+
+variable "project_tld" {
+  default = "example.org"
+}
+
+variable "db_server_params" {
+  type = "map"
+  default = {
+    "name" = "db"
+    "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f"
+    "volume_type" = "basic.ru-1a"
+    "volume_size" = "5"
+    "count" = "1"
+  }
+}
+
+variable "web_server_params" {
+  type = "map"
+  default = {
+    "name" = "web"
+    "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f"
+    "volume_type" = "basic.ru-1a"
+    "volume_size" = "5"
+    "count" = "2"
+  }
+}
