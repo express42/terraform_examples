@@ -30,7 +30,7 @@ resource "openstack_compute_instance_v2" "web_instance" {
   metadata {
     type = "${var.web_server_params["name"]}"
   }
-  network {   
+  network {
     name = "${var.private_lan["name"]}"
   }
 }
