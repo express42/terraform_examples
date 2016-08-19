@@ -18,6 +18,6 @@
 
 
 #Особенности реализации в Selectel
-* Для всех проектов [external-gateway](https://github.com/express42/terraform_examples/blob/master/simple_tier/networking.tf#L21) имеет один и тот же ID 
+* Для всех проектов, [external-gateway](https://github.com/express42/terraform_examples/blob/master/simple_tier/networking.tf#L21) имеет один и тот же ID 
 
-* Дополнительно создаем [keypair](https://github.com/express42/terraform_examples/blob/master/simple_tier/security.tf), поскольку управление пользователями в панеле похоже сделано иначе.
+* Дополнительно создаем [keypair](https://github.com/express42/terraform_examples/blob/master/simple_tier/security.tf), поскольку управление пользователями в панеле управления его не использует
