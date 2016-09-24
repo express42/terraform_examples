@@ -27,6 +27,17 @@ variable "private_lan" {
   }
 }
 
+## for work with defined pool of created floating ips
+variable "app_floating_ips" {
+  type = "list"
+  default = [""] # put here a list of your floating ips for the service
+}
+
+variable "web_floating_ips" {
+  type = "list"
+  default = ["",""] # put here a list of your floating ips for the service
+}
+
 # role-based params
 variable "app_server_params" {
   type = "map"
