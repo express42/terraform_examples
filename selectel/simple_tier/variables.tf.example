@@ -1,19 +1,12 @@
 # provider specific parameters
-variable "selectel" {
-  type = "map"
-  default = {
-    "user_name" = "" # OS_USERNAME
-    "domain_name" = "" # OS_PROJECT_DOMAIN_NAME
-    "tenant_name" = "" # OS_PROJECT_ID
-    "tenant_id" = "" # OS_TENANT_ID
-    "password" = ""
-  }
-}
+variable "selectel_user_name" {}
+variable "selectel_domain_name" {}
+variable "selectel_tenant_name" {}
+variable "selectel_tenant_id" {}
+variable "selectel_password" {}
 
 # using ssh keypairs for each instance
-variable "project_ssh_pubkey" {
-  default = "" # ssh pubkey
-}
+variable "project_ssh_pubkey" {}
 
 # part of fqdn
 variable "project_tld" {

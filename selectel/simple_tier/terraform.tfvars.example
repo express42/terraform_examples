@@ -1,0 +1,7 @@
+selectel_user_name = ""   # OS_USERNAME
+selectel_domain_name = "" # OS_PROJECT_DOMAIN_NAME
+selectel_tenant_name = "" # OS_PROJECT_ID
+selectel_tenant_id = ""   # OS_TENANT_ID
+selectel_password = ""
+
+project_ssh_pubkey = "" 
