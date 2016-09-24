@@ -18,6 +18,10 @@ variable "region" {
   default = "ru-1" # ru-1 (SPB) or ru-2 (MSK)
 }
 
+variable "external_gateway" {
+  default = "ab2264dd-bde8-4a97-b0da-5fea63191019" ## see your own external_id using by using command neutron net-list
+}
+
 # we need only one subnet for this project
 variable "private_lan" {
   type = "map"
