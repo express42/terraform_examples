@@ -1,4 +1,4 @@
-resource "template_file" "app_init" {
+data "template_file" "app_init" {
   count    = "${var.app_server_params["count"]}"
   template = "${server_name}"
   vars {
@@ -8,7 +8,7 @@ resource "template_file" "app_init" {
 
 resource "openstack_blockstorage_volume_v2" "app_vol" {
   count = "${var.app_server_params["count"]}"
-  name = "disk-for-${element(template_file.app_init.*.rendered, count.index)}"
+  name = "disk-for-${element(data.template_file.app_init.*.rendered, count.index)}"
   size = "${var.app_server_params["volume_size"]}"
   volume_type = "${var.app_server_params["volume_type"]}"
   image_id = "${var.app_server_params["image_id"]}"
@@ -20,7 +20,7 @@ resource "openstack_blockstorage_volume_v2" "app_vol" {
 
 resource "openstack_compute_instance_v2" "app_instance" {
   count = "${var.app_server_params["count"]}"
-  name = "${element(template_file.app_init.*.rendered, count.index)}"
+  name = "${element(data.template_file.app_init.*.rendered, count.index)}"
   flavor_id = "${var.app_server_params["flavor"]}"
   region = "${var.region}"
   key_pair = "shared"
