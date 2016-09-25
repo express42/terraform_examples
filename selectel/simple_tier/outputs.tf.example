@@ -1,0 +1,11 @@
+output "web_ips" {
+   value = "${formatlist("instance %v has private ip %v",openstack_compute_instance_v2.web_instance.*.name,openstack_compute_instance_v2.web_instance.*.network.0.fixed_ip_v4)}"
+}
+
+output "db_ips" {
+   value = "${formatlist("instance %v has private ip %v",openstack_compute_instance_v2.db_instance.*.name,openstack_compute_instance_v2.db_instance.*.network.0.fixed_ip_v4)}"
+}
+
+output "app_ips" {
+   value = "${formatlist("instance %v has private ip %v",openstack_compute_instance_v2.app_instance.*.name,openstack_compute_instance_v2.app_instance.*.network.0.fixed_ip_v4 )}"
+}
