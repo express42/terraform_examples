@@ -13,6 +13,9 @@ resource "openstack_blockstorage_volume_v2" "web_vol" {
   volume_type = "${var.web_server_params["volume_type"]}"
   image_id = "${var.web_server_params["image_id"]}"
   region = "${var.region}"
+  lifecycle {
+    ignore_changes = ["name"]
+  }
 }
 
 resource "openstack_compute_instance_v2" "web_instance" {
@@ -33,5 +36,8 @@ resource "openstack_compute_instance_v2" "web_instance" {
   network {
     name = "${var.private_lan["name"]}"
     floating_ip = "${element(var.web_floating_ips,count.index)}"
+  }
+  lifecycle {
+    ignore_changes = ["name", "block_device"]
   }
 }

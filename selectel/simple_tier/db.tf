@@ -13,6 +13,9 @@ resource "openstack_blockstorage_volume_v2" "db_vol" {
   volume_type = "${var.db_server_params["volume_type"]}"
   image_id = "${var.db_server_params["image_id"]}"
   region = "${var.region}"
+  lifecycle {
+    ignore_changes = ["name"]
+  }
 }
 
 resource "openstack_compute_instance_v2" "db_instance" {
@@ -32,5 +35,8 @@ resource "openstack_compute_instance_v2" "db_instance" {
   }
   network {
     name = "${var.private_lan["name"]}"
+  }
+  lifecycle {
+    ignore_changes = ["name", "block_device"]
   }
 }
