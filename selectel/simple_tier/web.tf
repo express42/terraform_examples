@@ -21,7 +21,6 @@ resource "openstack_compute_instance_v2" "web_instance" {
   flavor_id = "${var.web_server_params["flavor"]}"
   region = "${var.region}"
   key_pair = "shared"
-  floating_ip = "${element(var.web_floating_ips,count.index)}"
   block_device {
     uuid = "${element(openstack_blockstorage_volume_v2.web_vol.*.id, count.index)}"
     source_type = "volume"
@@ -33,5 +32,6 @@ resource "openstack_compute_instance_v2" "web_instance" {
   }
   network {
     name = "${var.private_lan["name"]}"
+    floating_ip = "${element(var.web_floating_ips,count.index)}"
   }
 }
