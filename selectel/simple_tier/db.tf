@@ -38,5 +38,6 @@ resource "openstack_compute_instance_v2" "db_instance" {
   }
   lifecycle {
     ignore_changes = ["name", "block_device"]
+    prevent_destroy = true
   }
 }
