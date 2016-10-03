@@ -13,7 +13,6 @@
 * Provisioning в terraform
 * Поддержка управления инфраструктуры через libvirt
 * Интеграция с vault provider [TBA](https://github.com/hashicorp/terraform/issues/2221)
-* Работа с floating IP для случаев с включенным DHCP в private lan. Посмотреть на возможность получения параметров (IP) целевых истансов и последующие их использование при создании floting IP
 * Внедрение output vars для более информативного вывода
 
 

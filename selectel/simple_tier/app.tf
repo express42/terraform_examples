@@ -35,7 +35,6 @@ resource "openstack_compute_instance_v2" "app_instance" {
   }
   network {
     name = "${var.private_lan["name"]}"
-    floating_ip = "${element(var.app_floating_ips,count.index)}"
   }
   lifecycle {
     ignore_changes = ["name", "block_device"]
