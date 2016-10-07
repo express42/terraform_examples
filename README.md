@@ -1,11 +1,11 @@
 #Структура репозитория
 [Selectel](https://github.com/express42/terraform_examples/tree/master/selectel) - примеры окружений/проектов в облаке Selectel
 
-* [simple_tier](https://github.com/express42/terraform_examples/tree/master/selectel/simple_tier) - базовый пример, небольшо проекта, состояющего из app/db/web серверов, связанных в одну приватную сеть
+* [simple_tier](https://github.com/express42/terraform_examples/tree/master/selectel/simple_tier) - базовый пример, небольшо проекта, состояющего из app/db/web серверов, связанных в одну приватную сеть.
 
 #Известные проблемы
 [Пересоздание инстансов при изменении count переменной](https://github.com/hashicorp/terraform/issues/3449) - обратить внимание на [коммент](https://github.com/hashicorp/terraform/issues/3449#issuecomment-218955964). Ожидаемый результат - горизонтальное масштабирование
-
+При помощи блока lifecycle можно решить данную проблему. В данной реализации мы используем шаблон для формирования имени инстансов. Терраформ не может посчитать при планировании данные из шаблона, поэтому форсирует пересоздание инстансов при увеличении счетчика count. ignore_changes со списком параметров, которые получают свои данные из шаблона, помогает избежать данной проблемы.
 
 #Направления для исследования
 * Поддержка нескольких keypair
@@ -13,7 +13,6 @@
 * Provisioning в terraform
 * Поддержка управления инфраструктуры через libvirt
 * Интеграция с vault provider [TBA](https://github.com/hashicorp/terraform/issues/2221)
-* Работа с floating IP для случаев с включенным DHCP в private lan. Посмотреть на возможность получения параметров (IP) целевых истансов и последующие их использование при создании floting IP
 * Внедрение output vars для более информативного вывода
 
 

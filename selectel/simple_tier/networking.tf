@@ -18,7 +18,7 @@ resource "openstack_networking_subnet_v2" "private_lan_1" {
 resource "openstack_networking_router_v2" "gw_private" {
   name = "private_lan_escaper"
   # Static id for selectel external-network
-  external_gateway = "ab2264dd-bde8-4a97-b0da-5fea63191019"
+  external_gateway = "${var.external_gateway}"
   region = "${var.region}"
 }
 

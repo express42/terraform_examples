@@ -1,15 +1,3 @@
-# provider specific parameters
-variable "selectel" {
-  type = "map"
-  default = {
-    "user_name" = "" # OS_USERNAME
-    "domain_name" = "" # OS_PROJECT_DOMAIN_NAME
-    "tenant_name" = "" # OS_PROJECT_ID
-    "tenant_id" = "" # OS_TENANT_ID
-    "password" = ""
-  }
-}
-
 # using ssh keypairs for each instance
 variable "project_ssh_pubkey" {
   default = "" # ssh pubkey
@@ -25,6 +13,10 @@ variable "region" {
   default = "ru-1" # ru-1 (SPB) or ru-2 (MSK)
 }
 
+variable "external_gateway" {
+  default = "ab2264dd-bde8-4a97-b0da-5fea63191019" ## see your own external_gateway_id by using command neutron net-list
+}
+
 # we need only one subnet for this project
 variable "private_lan" {
   type = "map"
@@ -34,14 +26,20 @@ variable "private_lan" {
   }
 }
 
+## for work with a defined pool of floating ips
+variable "web_floating_ips" {
+  type = "list"
+  default = ["",""] # put here a list of your floating ips for the service
+}
+
 # role-based params
 variable "app_server_params" {
   type = "map"
   default = {
     "name" = "app"
-    "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f" # Instance specs, see nova flavor-list for full list
-    "image_id" = "c61cfa0d-3f7b-489f-8e55-4904a0d6e830" # Image id, ubuntu 14.04 in this case, see nova images-list for full list
-    "volume_type" = "basic.ru-1a" # Can be one of this: "basic.ru-1a", "universal.ru-1a", "fast.ru-1a", "isos"
+    "flavor" = "0005f6c0-7e10-42ac-8c7e-bcd8ae653d7f" # Instance specs, see nova flavor-list for a full list
+    "image_id" = "c61cfa0d-3f7b-489f-8e55-4904a0d6e830" # Image id, ubuntu 14.04 in this case, see nova images-list for a full list
+    "volume_type" = "basic.ru-1a" # Can be one of these: "basic.ru-1a", "universal.ru-1a", "fast.ru-1a", "isos"
     "volume_size" = "5" # Our block device size
     "count" = "2" # count of server to provision
   }
